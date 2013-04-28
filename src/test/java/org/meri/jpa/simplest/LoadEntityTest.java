@@ -44,13 +44,21 @@ public class LoadEntityTest extends AbstractTestCase {
     EntityManager em = factory.createEntityManager();
     Person person1 = em.find(Person.class, SIMON_SLASH_ID);
     Person person2 = em.find(Person.class, SIMON_SLASH_ID);
-    em.close();
+   em.close();
 
     // entities are equal
     assertEquals(person1, person2);
     // changes in one entity are visible in second entity
     person1.setFirstName("nobody");
     assertEquals("nobody", person2.getFirstName());
+    
+    EntityManager em2= factory.createEntityManager();
+    em2.getTransaction().begin();
+    
+    em2.merge(person1);
+    em2.merge(person2);
+    em2.flush();
+    em2.getTransaction().commit();
   }
 
   /**

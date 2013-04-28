@@ -14,7 +14,7 @@
 		<!-- other properties -->
 		<properties>
 			<!-- Do not use in production, this will generate a lot of output. -->
-			<!--  <property name="openjpa.Log" value="SQL=TRACE"/>  -->
+			 <property name="openjpa.Log" value="SQL=TRACE"/>  
 		</properties>
 
 	</persistence-unit>
